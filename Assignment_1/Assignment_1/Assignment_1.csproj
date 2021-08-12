@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="classes\Equipment\" />
+    <Folder Include="classes\Equipment\Armor\" />
+    <Folder Include="classes\Equipment\Weapon\" />
   </ItemGroup>
 
 </Project>
