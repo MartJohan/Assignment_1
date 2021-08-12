@@ -7,7 +7,8 @@ namespace Assignment_1
     {
         static void Main(string[] args)
         {
-            Hero hero1 = new Hero();
+            Warrior war = new Warrior("Martin", 3);
+            war.Display();
         }
     }
 }

@@ -10,16 +10,32 @@ namespace Assignment_1.classes.Heroes
     public class Warrior : Hero
     {
 
-        public Warrior(string Name, int Level,
-            Primary BasePrimaryAttributes,
-            Primary TotalPrimaryAttributes,Secondary SecondaryAttributes)
-            : base(Name, Level, BasePrimaryAttributes, TotalPrimaryAttributes, SecondaryAttributes)
+
+        public Warrior(string name, int level) : base(name,level)
         {
-            BasePrimaryAttributes.Strength = 5;
-            BasePrimaryAttributes.Dexterity = 2;
-            BasePrimaryAttributes.Intelligence = 1;
-            BasePrimaryAttributes.Vitality = 10;
-        }
+            this.Name = name;
+            this.Level = level;
+
+            //Create a new object of type Primary and initialize it's values
+            //TODO Ask whether or not the base values should change depending on level, or if this is supposed to be the total primaryattributes
+            var Primary = new Primary
+            {
+                Strength = 5 * level,
+                Dexterity = 2 * level,
+                Intelligence = 1 * level,
+                Vitality = 10 * level
+            };
+            this.BasePrimaryAttributes = Primary;
+
+            //Same thing with the secondary values
+            var Secondary = new Secondary
+            {
+                Health = (this.BasePrimaryAttributes.Vitality * 10),
+                ArmorRating = (this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity),
+                ElementalResistance = this.BasePrimaryAttributes.Intelligence
+            };
+            this.SecondaryAttributes = Secondary;
+            }
 
         /// <summary>
         /// Takes in all the base values and updates them accordingly each time the hero levels up.
@@ -29,15 +45,19 @@ namespace Assignment_1.classes.Heroes
         /// <param name="Intelligence"></param>
         /// <param name="Vitality"></param>
         /// <param name="hero"></param>
-        public override void LevelUp(int Strength, int Dexterity, int Intelligence, int Vitality, Hero hero)
+        public override void LevelUp(int Strength, int Dexterity, int Intelligence, int Vitality)
         {
-            Console.WriteLine($"Your characters strength rose by {Strength}, dexterity rose by {Dexterity}, " +
+            Console.WriteLine($"Your {this.Name} strength rose by {Strength}, dexterity rose by {Dexterity}, " +
                 $"intelligence rose by {Intelligence} and vitality rose by {Vitality}");
-            hero.BasePrimaryAttributes.Strength += 3;
-            hero.BasePrimaryAttributes.Dexterity += 2;
-            hero.BasePrimaryAttributes.Intelligence += 1;
-            hero.BasePrimaryAttributes.Vitality += 10;
+            this.BasePrimaryAttributes.Strength += 3;
+            this.BasePrimaryAttributes.Dexterity += 2;
+            this.BasePrimaryAttributes.Intelligence += 1;
+            this.BasePrimaryAttributes.Vitality += 10;
         }
 
+        public void Display()
+        {
+            Console.Write($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Assignment_1.classes.Heroes
     {
         public string Name { get; set; }
 
-        private int Level { get; set; }
+        public int Level { get; set; }
 
         public Primary BasePrimaryAttributes { get; set; }
 
@@ -21,20 +21,16 @@ namespace Assignment_1.classes.Heroes
 
         public Secondary SecondaryAttributes { get; set; }
 
-        public Hero(string name, int level, Primary basePrimaryAttributes,
-            Primary totalPrimaryAttribute, Secondary secondaryAttributes)
+        public Hero(string name, int level)
         {
-            Name = name;
-            Level = level;
-            BasePrimaryAttributes = basePrimaryAttributes;
-            TotalPrimaryAttributes = totalPrimaryAttribute;
-            SecondaryAttributes = secondaryAttributes;
+            this.Name = name;
+            this.Level = level;
         }
 
-        public virtual void LevelUp(int Strength, int Dexterity, int Intelligence, int Vitality, Hero hero)
+        public virtual void LevelUp(int Strength, int Dexterity, int Intelligence, int Vitality)
         {
 
-            Console.WriteLine($"Congratulations! {hero.Name}'s strength rose by {Strength}, dexterity rose by {Dexterity}, " +
+            Console.WriteLine($"Congratulations! {this.Name}'s strength rose by {Strength}, dexterity rose by {Dexterity}, " +
                 $"intelligence rose by {Intelligence} and vitality rose by {Vitality}");
         }
 

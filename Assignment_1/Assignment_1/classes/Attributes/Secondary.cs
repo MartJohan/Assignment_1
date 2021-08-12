@@ -8,11 +8,11 @@ namespace Assignment_1.classes.Attributes
 {
     public class Secondary
     {
-        private int Health { get; set; }
+        public int Health { get; set; }
 
-        private int ArmorRating { get; set; }
+        public int ArmorRating { get; set; }
 
-        private int ElementalResistance { get; set; }
+        public int ElementalResistance { get; set; }
 
     }
 }
