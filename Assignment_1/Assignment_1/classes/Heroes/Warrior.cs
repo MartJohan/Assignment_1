@@ -51,7 +51,7 @@ namespace Assignment_1.classes.Heroes
         }
 
         //Currently this is only used for testing the character stats and siplaying it in the console
-        public void Display()
+        public override void Display()
         {
             Console.WriteLine($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
         }

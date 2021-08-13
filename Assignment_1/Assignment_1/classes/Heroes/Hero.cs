@@ -14,9 +14,9 @@ namespace Assignment_1.classes.Heroes
         public string Name { get; set; }
 
         public int Level { get; set; }
-
+        //Base stats should represent the hero's base stats, which means only the stats it gains from leveling up
         public Primary BasePrimaryAttributes { get; set; }
-
+        //Total stats should be base stats + gear
         public Primary TotalPrimaryAttributes { get; set; }
 
         public Secondary SecondaryAttributes { get; set; }
@@ -32,6 +32,11 @@ namespace Assignment_1.classes.Heroes
 
             Console.WriteLine($"Congratulations! {this.Name}'s strength rose by {0}, dexterity rose by {0}, " +
                 $"intelligence rose by {0} and vitality rose by {0}");
+        }
+
+        public virtual void Display()
+        {
+            Console.WriteLine($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
         }
 
 
