@@ -40,24 +40,20 @@ namespace Assignment_1.classes.Heroes
         /// <summary>
         /// Takes in all the base values and updates them accordingly each time the hero levels up.
         /// </summary>
-        /// <param name="Strength"></param>
-        /// <param name="Dexterity"></param>
-        /// <param name="Intelligence"></param>
-        /// <param name="Vitality"></param>
-        /// <param name="hero"></param>
-        public override void LevelUp(int Strength, int Dexterity, int Intelligence, int Vitality)
+        public override void LevelUp()
         {
-            Console.WriteLine($"Your {this.Name} strength rose by {Strength}, dexterity rose by {Dexterity}, " +
-                $"intelligence rose by {Intelligence} and vitality rose by {Vitality}");
+            Console.WriteLine($"Your {this.Name} strength rose by {3}, dexterity rose by {2}, " +
+                $"intelligence rose by {1} and vitality rose by {10}");
             this.BasePrimaryAttributes.Strength += 3;
             this.BasePrimaryAttributes.Dexterity += 2;
             this.BasePrimaryAttributes.Intelligence += 1;
             this.BasePrimaryAttributes.Vitality += 10;
         }
 
+        //Currently this is only used for testing the character stats and siplaying it in the console
         public void Display()
         {
-            Console.Write($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
+            Console.WriteLine($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
         }
     }
 }

@@ -27,11 +27,11 @@ namespace Assignment_1.classes.Heroes
             this.Level = level;
         }
 
-        public virtual void LevelUp(int Strength, int Dexterity, int Intelligence, int Vitality)
+        public virtual void LevelUp()
         {
 
-            Console.WriteLine($"Congratulations! {this.Name}'s strength rose by {Strength}, dexterity rose by {Dexterity}, " +
-                $"intelligence rose by {Intelligence} and vitality rose by {Vitality}");
+            Console.WriteLine($"Congratulations! {this.Name}'s strength rose by {0}, dexterity rose by {0}, " +
+                $"intelligence rose by {0} and vitality rose by {0}");
         }
 
 

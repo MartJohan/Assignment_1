@@ -9,6 +9,8 @@ namespace Assignment_1
         {
             Warrior war = new Warrior("Martin", 3);
             war.Display();
+            war.LevelUp();
+            war.Display();
         }
     }
 }
