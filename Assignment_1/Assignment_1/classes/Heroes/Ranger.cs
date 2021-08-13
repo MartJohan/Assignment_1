@@ -13,9 +13,6 @@ namespace Assignment_1.classes.Heroes
         {
             this.Name = name;
             this.Level = level;
-            //Base stats : V 8, S 1, D 7, I 1
-            //Level up : V 2, S 1, D 5, I 1
-            //Secondary stats = H V * 10, AR S +D, ER I
             var Primary = new Primary
             {
                 Strength = 1,
@@ -24,6 +21,9 @@ namespace Assignment_1.classes.Heroes
                 Vitality = 8 
             };
             this.BasePrimaryAttributes = Primary;
+
+            this.Damage = (this.BasePrimaryAttributes.Dexterity / 100);
+
 
             var Secondary = new Secondary
             {
@@ -47,6 +47,7 @@ namespace Assignment_1.classes.Heroes
             this.BasePrimaryAttributes.Dexterity += 5;
             this.BasePrimaryAttributes.Intelligence += 1;
             this.BasePrimaryAttributes.Vitality += 2;
+            this.Level++;
         }
     }
 }

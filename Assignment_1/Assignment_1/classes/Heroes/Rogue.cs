@@ -28,6 +28,9 @@ namespace Assignment_1.classes.Heroes
             };
             this.BasePrimaryAttributes = Primary;
 
+            this.Damage += (this.BasePrimaryAttributes.Dexterity / 100);
+
+
             var Secondary = new Secondary
             {
                 Health = this.BasePrimaryAttributes.Vitality * 10,
@@ -46,6 +49,7 @@ namespace Assignment_1.classes.Heroes
             this.BasePrimaryAttributes.Dexterity += 4;
             this.BasePrimaryAttributes.Intelligence += 1;
             this.BasePrimaryAttributes.Vitality += 3;
+            this.Level++;
         }
 
         public override void Display()

@@ -21,6 +21,8 @@ namespace Assignment_1.classes.Heroes
 
         public Secondary SecondaryAttributes { get; set; }
 
+        public int Damage { get; set; }
+
         public Hero(string name, int level)
         {
             this.Name = name;

@@ -1,5 +1,6 @@
 ﻿using System;
 using Assignment_1.classes.Heroes;
+using Assignment_1.classes.Equipment;
 
 namespace Assignment_1
 {
@@ -7,10 +8,18 @@ namespace Assignment_1
     {
         static void Main(string[] args)
         {
+
+            
+
             Warrior war = new Warrior("Martin", 3);
             war.Display();
             war.LevelUp();
             war.Display();
+
+            Weapon Axe = new Weapon(9, Weapon.WeaponType.Axe);
+            Armor Chest = new Armor(11, Armor.ArmorType.Plate, Items.Slots.Body);
+
+            Console.WriteLine(Axe.DPS);
         }
     }
 }

@@ -9,9 +9,6 @@ namespace Assignment_1.classes.Heroes
 {
     class Mage : Hero
     {
-        //Base stats : V 5, S 1, D 1, I 8
-        //Level up : V 3, S 1, D 1, I 5
-        //Seconday stats : H V * 10, AR S + D, ER I
         public Mage(string name, int level) : base(name, level)
         {
             this.Name = name;
@@ -25,6 +22,9 @@ namespace Assignment_1.classes.Heroes
                 Vitality = 5 * level
             };
             this.BasePrimaryAttributes = Primary;
+
+            this.Damage = (this.BasePrimaryAttributes.Intelligence / 100);
+
 
             var Secondary = new Secondary
             {
@@ -43,6 +43,7 @@ namespace Assignment_1.classes.Heroes
             this.BasePrimaryAttributes.Dexterity += 1;
             this.BasePrimaryAttributes.Intelligence += 5;
             this.BasePrimaryAttributes.Vitality += 3;
+            this.Level++;
         }
 
         public override void Display()

@@ -17,7 +17,6 @@ namespace Assignment_1.classes.Heroes
             this.Level = level;
 
             //Create a new object of type Primary and initialize it's values
-            //TODO Ask whether or not the base values should change depending on level, or if this is supposed to be the total primaryattributes
             var Primary = new Primary
             {
                 Strength = 5 * level,
@@ -26,6 +25,10 @@ namespace Assignment_1.classes.Heroes
                 Vitality = 10 * level
             };
             this.BasePrimaryAttributes = Primary;
+
+
+            this.Damage = (this.BasePrimaryAttributes.Strength / 100);
+
 
             //Same thing with the secondary values
             var Secondary = new Secondary
@@ -48,6 +51,7 @@ namespace Assignment_1.classes.Heroes
             this.BasePrimaryAttributes.Dexterity += 2;
             this.BasePrimaryAttributes.Intelligence += 1;
             this.BasePrimaryAttributes.Vitality += 10;
+            this.Level++;
         }
 
         //Currently this is only used for testing the character stats and siplaying it in the console
