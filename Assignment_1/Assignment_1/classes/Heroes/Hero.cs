@@ -23,6 +23,8 @@ namespace Assignment_1.classes.Heroes
 
         public int Damage { get; set; }
 
+        public string Role { get; set; }
+
         public Hero(string name, int level)
         {
             this.Name = name;

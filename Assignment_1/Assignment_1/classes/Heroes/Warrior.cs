@@ -15,6 +15,7 @@ namespace Assignment_1.classes.Heroes
         {
             this.Name = name;
             this.Level = level;
+            this.Role = "Warrior";
 
             //Create a new object of type Primary and initialize it's values
             var Primary = new Primary
@@ -51,13 +52,28 @@ namespace Assignment_1.classes.Heroes
             this.BasePrimaryAttributes.Dexterity += 2;
             this.BasePrimaryAttributes.Intelligence += 1;
             this.BasePrimaryAttributes.Vitality += 10;
+
+            //Secondary attributes
+            this.SecondaryAttributes.Health = this.BasePrimaryAttributes.Vitality * 10;
+            this.SecondaryAttributes.ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity;
+            this.SecondaryAttributes.ElementalResistance = this.BasePrimaryAttributes.Intelligence;
             this.Level++;
         }
 
         //Currently this is only used for testing the character stats and siplaying it in the console
         public override void Display()
         {
-            Console.WriteLine($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
+            Console.WriteLine($"Name : {this.Name}");
+            Console.WriteLine($"Level : {this.Level}");
+            Console.WriteLine($"Strenght : {this.BasePrimaryAttributes.Strength}");
+            Console.WriteLine($"Dexterity : {this.BasePrimaryAttributes.Dexterity}");
+            Console.WriteLine($"Intelligence : {this.BasePrimaryAttributes.Intelligence}");
+            Console.WriteLine($"Vitality : {this.BasePrimaryAttributes.Vitality}");
+            Console.WriteLine($"Health : {this.SecondaryAttributes.Health}");
+            Console.WriteLine($"Armor rating : {this.SecondaryAttributes.ArmorRating}");
+            Console.WriteLine($"Elemental Resistance : {this.SecondaryAttributes.ElementalResistance}");
+            //DPS is wrong as for now
+            Console.WriteLine($"DPS : {this.Damage}");
         }
     }
 }

@@ -14,14 +14,5 @@ namespace Assignment_1.classes.Attributes
 
         public int Intelligence { get; set; }
         public int Vitality { get; set; }
-
-        /*Primary(int strength, int dexterity, int intelligence, int vitality)
-        {
-            Strength = strength;
-            Dexterity = dexterity;
-            Intelligence = intelligence;
-            Vitality = vitality;
-        }
-        */
     }
 }

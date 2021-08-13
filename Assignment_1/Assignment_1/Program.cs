@@ -11,7 +11,7 @@ namespace Assignment_1
 
             
 
-            Warrior war = new Warrior("Martin", 3);
+            Rogue war = new Rogue("Martin", 1);
             war.Display();
             war.LevelUp();
             war.Display();

@@ -13,6 +13,7 @@ namespace Assignment_1.classes.Heroes
         {
             this.Name = name;
             this.Level = level;
+            this.Role = "Mage";
 
             var Primary = new Primary
             {
@@ -43,12 +44,27 @@ namespace Assignment_1.classes.Heroes
             this.BasePrimaryAttributes.Dexterity += 1;
             this.BasePrimaryAttributes.Intelligence += 5;
             this.BasePrimaryAttributes.Vitality += 3;
+
+            //Secondary attributes
+            this.SecondaryAttributes.Health = this.BasePrimaryAttributes.Vitality * 10;
+            this.SecondaryAttributes.ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity;
+            this.SecondaryAttributes.ElementalResistance = this.BasePrimaryAttributes.Intelligence;
             this.Level++;
         }
 
         public override void Display()
         {
-            Console.WriteLine($"Name : {this.Name}, Level : {this.Level}, Intelligence :{this.BasePrimaryAttributes.Intelligence}");
+            Console.WriteLine($"Name : {this.Name}");
+            Console.WriteLine($"Level : {this.Level}");
+            Console.WriteLine($"Strenght : {this.BasePrimaryAttributes.Strength}");
+            Console.WriteLine($"Dexterity : {this.BasePrimaryAttributes.Dexterity}");
+            Console.WriteLine($"Intelligence : {this.BasePrimaryAttributes.Intelligence}");
+            Console.WriteLine($"Vitality : {this.BasePrimaryAttributes.Vitality}");
+            Console.WriteLine($"Health : {this.SecondaryAttributes.Health}");
+            Console.WriteLine($"Armor rating : {this.SecondaryAttributes.ArmorRating}");
+            Console.WriteLine($"Elemental Resistance : {this.SecondaryAttributes.ElementalResistance}");
+            //DPS is wrong as for now
+            Console.WriteLine($"DPS : {this.Damage}");
         }
 
     }
