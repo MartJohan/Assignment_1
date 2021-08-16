@@ -9,15 +9,19 @@ namespace Assignment_1
         static void Main(string[] args)
         {
 
-            Warrior war = new Warrior("Martin", 1);
+            Warrior war = new Warrior("Martin", 5);
 
             Weapon Axe = new Weapon(9, Weapon.WeaponType.Axe);
-            Armor PlateHead = new Armor(1, Armor.ArmorType.Plate, Items.Slots.Head);
-
-            //war.EquipGear(PlateHead);
+            Armor PlateHead = new Armor(5, Armor.ArmorType.Plate, Items.Slots.Head);
+            Armor PlateBody = new Armor(5, Armor.ArmorType.Plate, Items.Slots.Body);
+            Armor MailLegs = new Armor(5, Armor.ArmorType.Mail, Items.Slots.Legs);
 
             war.Display();
+            
             war.EquipGear(PlateHead);
+            war.EquipGear(PlateBody);
+            war.EquipGear(MailLegs);
+
             war.Display();
 
             Console.WriteLine();

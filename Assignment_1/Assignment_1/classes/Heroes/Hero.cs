@@ -13,6 +13,11 @@ namespace Assignment_1.classes.Heroes
 {
     public abstract class Hero
     {
+
+        public Dictionary<int, Items> Equipment = new Dictionary<int, Items>();
+
+        public Dictionary<int, Primary> EquippedStats = new Dictionary<int, Primary>();
+
         public string Name { get; set; }
 
         public int Level { get; set; }
@@ -27,47 +32,39 @@ namespace Assignment_1.classes.Heroes
 
         public string Role { get; set; }
 
-        Dictionary<Items.Slots, Armor.ArmorType> Equipment = new Dictionary<Items.Slots, Armor.ArmorType>();
-
         public Hero(string name, int level)
         {
-            this.Name = name;
-            this.Level = level;
+            Name = name;
+            Level = level;
         }
 
         public Primary LevelUp(Primary primary)
         {
-            Console.WriteLine($"Your hero leveled up, your strength rose by {primary.Strength}," +
-                $" dexterity rose by {primary.Dexterity}, intelligence rose by {primary.Intelligence}" +
-                $" and vitality rose by {primary.Vitality}, you rock!");
-
             Primary NewPrimaryStats = new Primary
             {
-                Strength = this.BaseAttributes.Strength + primary.Strength,
-                Dexterity = this.BaseAttributes.Dexterity + primary.Dexterity,
-                Intelligence = this.BaseAttributes.Intelligence + primary.Intelligence,
-                Vitality = this.BaseAttributes.Vitality + primary.Vitality
+                Strength = BaseAttributes.Strength + primary.Strength,
+                Dexterity = BaseAttributes.Dexterity + primary.Dexterity,
+                Intelligence = BaseAttributes.Intelligence + primary.Intelligence,
+                Vitality = BaseAttributes.Vitality + primary.Vitality
             };
 
             return NewPrimaryStats;
         }
 
-        // public abstract void EquipGear(Type type);
-
         //Currently this is only used for testing the character stats and siplaying it in the console
         public void Display()
         {
-            Console.WriteLine($"Name : {this.Name}");
-            Console.WriteLine($"Level : {this.Level}");
-            Console.WriteLine($"Strenght : {this.TotalPrimaryAttributes.Strength}");
-            Console.WriteLine($"Dexterity : {this.TotalPrimaryAttributes.Dexterity}");
-            Console.WriteLine($"Intelligence : {this.TotalPrimaryAttributes.Intelligence}");
-            Console.WriteLine($"Vitality : {this.TotalPrimaryAttributes.Vitality}");
-            Console.WriteLine($"Health : {this.SecondaryAttributes.Health}");
-            Console.WriteLine($"Armor rating : {this.SecondaryAttributes.ArmorRating}");
-            Console.WriteLine($"Elemental Resistance : {this.SecondaryAttributes.ElementalResistance}");
+            Console.WriteLine($"Name : {Name}");
+            Console.WriteLine($"Level : {Level}");
+            Console.WriteLine($"Strenght : {TotalPrimaryAttributes.Strength}");
+            Console.WriteLine($"Dexterity : {TotalPrimaryAttributes.Dexterity}");
+            Console.WriteLine($"Intelligence : {TotalPrimaryAttributes.Intelligence}");
+            Console.WriteLine($"Vitality : {TotalPrimaryAttributes.Vitality}");
+            Console.WriteLine($"Health : {SecondaryAttributes.Health}");
+            Console.WriteLine($"Armor rating : {SecondaryAttributes.ArmorRating}");
+            Console.WriteLine($"Elemental Resistance : {SecondaryAttributes.ElementalResistance}");
             //DPS is wrong as for now
-            Console.WriteLine($"DPS : {this.Damage}");
+            Console.WriteLine($"DPS : {Damage}");
             Console.WriteLine("----------------------------------");
         }
 
@@ -77,12 +74,20 @@ namespace Assignment_1.classes.Heroes
         /// <param name="TotalStats"></param>
         public Primary UpdateTotalPrimaryStats(Armor armor)
         {
+            Primary TotalEquippedStats = new Primary();
+            foreach(KeyValuePair<int, Primary> equippedStats in EquippedStats)
+            {
+                TotalEquippedStats.Strength += equippedStats.Value.Strength;
+                TotalEquippedStats.Dexterity += equippedStats.Value.Dexterity;
+                TotalEquippedStats.Intelligence += equippedStats.Value.Intelligence;
+                TotalEquippedStats.Vitality += equippedStats.Value.Vitality;
+            }
             Primary NewTotalStats = new Primary
             {
-                Strength = this.TotalPrimaryAttributes.Strength + armor.BaseAttributes.Strength,
-                Dexterity = this.TotalPrimaryAttributes.Dexterity + armor.BaseAttributes.Dexterity,
-                Intelligence = this.TotalPrimaryAttributes.Intelligence + armor.BaseAttributes.Intelligence,
-                Vitality = this.TotalPrimaryAttributes.Vitality + armor.BaseAttributes.Vitality
+                Strength = BaseAttributes.Strength + TotalEquippedStats.Strength,
+                Dexterity = BaseAttributes.Dexterity + TotalEquippedStats.Dexterity,
+                Intelligence = BaseAttributes.Intelligence + TotalEquippedStats.Intelligence,
+                Vitality = BaseAttributes.Vitality + TotalEquippedStats.Vitality
             };
             return NewTotalStats;
         }
@@ -95,14 +100,12 @@ namespace Assignment_1.classes.Heroes
         {
             Secondary NewSecondaryStats = new Secondary
             {
-                Health = this.TotalPrimaryAttributes.Vitality * 10,
-                ArmorRating =this.TotalPrimaryAttributes.Strength + this.TotalPrimaryAttributes.Dexterity,
-                ElementalResistance = this.TotalPrimaryAttributes.Intelligence
+                Health = TotalPrimaryAttributes.Vitality * 10,
+                ArmorRating = TotalPrimaryAttributes.Strength + TotalPrimaryAttributes.Dexterity,
+                ElementalResistance = TotalPrimaryAttributes.Intelligence
             };
 
             return NewSecondaryStats;
         }
-
-
     }
 }

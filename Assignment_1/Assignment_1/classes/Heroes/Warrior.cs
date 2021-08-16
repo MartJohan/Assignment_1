@@ -11,12 +11,12 @@ namespace Assignment_1.classes.Heroes
 {
     public class Warrior : Hero
     {
-        Dictionary<int, Items> Equipment = new Dictionary<int, Items>();
+        
         public Warrior(string name, int level) : base(name,level)
         {
-            this.Name = name;
-            this.Level = level;
-            this.Role = "Warrior";
+            Name = name;
+            Level = level;
+            Role = "Warrior";
 
             //Create a new object of type Primary and initialize it's values
             var Primary = new Primary
@@ -26,19 +26,20 @@ namespace Assignment_1.classes.Heroes
                 Intelligence = 1 * level,
                 Vitality = 10 * level
             };
-            this.BaseAttributes = Primary;
-            this.TotalPrimaryAttributes = this.BaseAttributes;
-            this.Damage = (this.BaseAttributes.Strength / 100);
+            BaseAttributes = Primary;
+            TotalPrimaryAttributes = this.BaseAttributes;
+            Damage = (BaseAttributes.Strength / 100);
+            Console.WriteLine(Damage);
 
 
             //Same thing with the secondary values
             var Secondary = new Secondary
             {
-                Health = (this.BaseAttributes.Vitality * 10),
-                ArmorRating = (this.BaseAttributes.Strength + this.BaseAttributes.Dexterity),
-                ElementalResistance = this.BaseAttributes.Intelligence
+                Health = (BaseAttributes.Vitality * 10),
+                ArmorRating = (BaseAttributes.Strength + BaseAttributes.Dexterity),
+                ElementalResistance = BaseAttributes.Intelligence
             };
-            this.SecondaryAttributes = Secondary;
+            SecondaryAttributes = Secondary;
             }
 
         /// <summary>
@@ -53,9 +54,9 @@ namespace Assignment_1.classes.Heroes
                 Intelligence = 1,
                 Vitality = 10
             };
-            this.BaseAttributes = this.LevelUp(LevelUpStats);
-            this.SecondaryAttributes = this.UpdateSecondaryStats();
-            this.Level++;
+            BaseAttributes = LevelUp(LevelUpStats);
+            SecondaryAttributes = UpdateSecondaryStats();
+            Level++;
         }
 
         /// <summary>
@@ -72,8 +73,8 @@ namespace Assignment_1.classes.Heroes
             {
                 if(armor.armorType != Armor.ArmorType.Mail && armor.armorType != Armor.ArmorType.Plate)
                 {
-                    throw new InvalidArmorException($"As a {this.Role} you cannot use {armor.armorType}");
-                } else if(armor.RequiredLevel > this.Level)
+                    throw new InvalidArmorException($"As a {Role} you cannot use {armor.armorType}");
+                } else if(armor.RequiredLevel > Level)
                 {
                     throw new InvalidArmorException("This armor is to high leveled for you to use");
                 }
@@ -82,23 +83,32 @@ namespace Assignment_1.classes.Heroes
                     switch (armor.Slot)
                     {
                         case (Items.Slots.Head):
-                            this.Equipment.Remove(1);
-                            this.Equipment.Add(1, armor);
+                            Equipment.Remove(1);
+                            EquippedStats.Remove(1);
+
+                            Equipment.Add(1, armor);
+                            EquippedStats.Add(1, armor.BaseAttributes);
                             break;
 
                         case (Items.Slots.Body):
-                            this.Equipment.Remove(2);
-                            this.Equipment.Add(2, armor);
+                            Equipment.Remove(2);
+                            EquippedStats.Remove(2);
+
+                            Equipment.Add(2, armor);
+                            EquippedStats.Add(2, armor.BaseAttributes);
                             break;
 
                         case (Items.Slots.Legs):
-                            this.Equipment.Remove(3);
-                            this.Equipment.Add(3, armor);
+                            Equipment.Remove(3);
+                            EquippedStats.Remove(3);
+
+                            Equipment.Add(3, armor);
+                            EquippedStats.Add(3, armor.BaseAttributes);
                             break;
                     }
 
-                this.TotalPrimaryAttributes = this.UpdateTotalPrimaryStats(armor);
-                this.SecondaryAttributes = this.UpdateSecondaryStats();
+                TotalPrimaryAttributes = UpdateTotalPrimaryStats(armor);
+                SecondaryAttributes = UpdateSecondaryStats();
             } catch(InvalidArmorException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -116,17 +126,17 @@ namespace Assignment_1.classes.Heroes
         {
             try
             {
-                Console.WriteLine($"Your level {this.Level}, weapon level {weapon.RequiredLevel}");
+                Console.WriteLine($"Your level {Level}, weapon level {weapon.RequiredLevel}");
                 if (weapon.type != Weapon.WeaponType.Axe && weapon.type != Weapon.WeaponType.Hammer && weapon.type != Weapon.WeaponType.Sword)
                 {
-                    throw new InvalidWeaponException($"As a {this.Role} you cannot use this type of weapon");
-                } else if(weapon.RequiredLevel > this.Level)
+                    throw new InvalidWeaponException($"As a {Role} you cannot use this type of weapon");
+                } else if(weapon.RequiredLevel > Level)
                 {
                     throw new InvalidWeaponException($"This weapon requires you to be level {weapon.RequiredLevel}");
                 }
 
-                this.Equipment.Remove(4);
-                this.Equipment.Add(4, weapon);
+                Equipment.Remove(4);
+                Equipment.Add(4, weapon);
             } catch(InvalidWeaponException ex)
             {
                 Console.WriteLine(ex.Message);
