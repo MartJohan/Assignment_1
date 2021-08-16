@@ -7,9 +7,10 @@ using Assignment_1.classes.Attributes;
 
 namespace Assignment_1.classes.Equipment
 {
-    class Armor : Items
+    public class Armor : Items
     {
         public Primary BaseAttributes;
+        public ArmorType armorType;
         public enum ArmorType
         {
             Cloth,
@@ -17,14 +18,16 @@ namespace Assignment_1.classes.Equipment
             Mail,
             Plate
         }
-        public Armor(int requiredLevel, ArmorType type, Slots slot)
+        public Armor(int requiredLevel, ArmorType armor, Slots slot)
         {
-            this.Name = type.ToString();
+            this.Name = armor.ToString();
             this.RequiredLevel = requiredLevel;
             this.Slot = slot;
+            this.armorType = armor;
+
 
             Primary Primary = new Primary();
-            switch (type)
+            switch (armor)
             {
                 case (ArmorType.Cloth):
                     Primary.Strength = 2;

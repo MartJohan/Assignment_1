@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assignment_1.classes.Attributes;
+using Assignment_1.classes.Equipment;
+using Assignment_1.classes.Exceptions;
 
 namespace Assignment_1.classes.Heroes
 {
     public class Warrior : Hero
     {
-
-
+        Dictionary<int, Armor> Equipment = new Dictionary<int, Armor>();
         public Warrior(string name, int level) : base(name,level)
         {
             this.Name = name;
@@ -25,18 +26,16 @@ namespace Assignment_1.classes.Heroes
                 Intelligence = 1 * level,
                 Vitality = 10 * level
             };
-            this.BasePrimaryAttributes = Primary;
-
-
-            this.Damage = (this.BasePrimaryAttributes.Strength / 100);
+            this.BaseAttributes = Primary;
+            this.Damage = (this.BaseAttributes.Strength / 100);
 
 
             //Same thing with the secondary values
             var Secondary = new Secondary
             {
-                Health = (this.BasePrimaryAttributes.Vitality * 10),
-                ArmorRating = (this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity),
-                ElementalResistance = this.BasePrimaryAttributes.Intelligence
+                Health = (this.BaseAttributes.Vitality * 10),
+                ArmorRating = (this.BaseAttributes.Strength + this.BaseAttributes.Dexterity),
+                ElementalResistance = this.BaseAttributes.Intelligence
             };
             this.SecondaryAttributes = Secondary;
             }
@@ -48,16 +47,43 @@ namespace Assignment_1.classes.Heroes
         {
             Console.WriteLine($"Your {this.Name} strength rose by {3}, dexterity rose by {2}, " +
                 $"intelligence rose by {1} and vitality rose by {10}");
-            this.BasePrimaryAttributes.Strength += 3;
-            this.BasePrimaryAttributes.Dexterity += 2;
-            this.BasePrimaryAttributes.Intelligence += 1;
-            this.BasePrimaryAttributes.Vitality += 10;
+            this.BaseAttributes.Strength += 3;
+            this.BaseAttributes.Dexterity += 2;
+            this.BaseAttributes.Intelligence += 1;
+            this.BaseAttributes.Vitality += 10;
 
             //Secondary attributes
-            this.SecondaryAttributes.Health = this.BasePrimaryAttributes.Vitality * 10;
-            this.SecondaryAttributes.ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity;
-            this.SecondaryAttributes.ElementalResistance = this.BasePrimaryAttributes.Intelligence;
+            this.SecondaryAttributes.Health = this.BaseAttributes.Vitality * 10;
+            this.SecondaryAttributes.ArmorRating = this.BaseAttributes.Strength + this.BaseAttributes.Dexterity;
+            this.SecondaryAttributes.ElementalResistance = this.BaseAttributes.Intelligence;
             this.Level++;
+        }
+
+        public void EquipGear(Armor armor)
+        {
+            /*
+             * Check if the armor is going to be placed in the correct slot
+             */
+
+            try
+            {
+                if(armor.armorType != Armor.ArmorType.Mail && armor.armorType != Armor.ArmorType.Plate)
+                {
+                    throw new InvalidArmorException($"As a {this.Role} you cannot use {armor.armorType}");
+                } else if(armor.RequiredLevel > this.Level)
+                {
+                    throw new InvalidArmorException("This armor is to high leveled for you to use");
+                }
+
+
+
+
+
+            } catch(InvalidArmorException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
 
         //Currently this is only used for testing the character stats and siplaying it in the console
@@ -65,10 +91,10 @@ namespace Assignment_1.classes.Heroes
         {
             Console.WriteLine($"Name : {this.Name}");
             Console.WriteLine($"Level : {this.Level}");
-            Console.WriteLine($"Strenght : {this.BasePrimaryAttributes.Strength}");
-            Console.WriteLine($"Dexterity : {this.BasePrimaryAttributes.Dexterity}");
-            Console.WriteLine($"Intelligence : {this.BasePrimaryAttributes.Intelligence}");
-            Console.WriteLine($"Vitality : {this.BasePrimaryAttributes.Vitality}");
+            Console.WriteLine($"Strenght : {this.BaseAttributes.Strength}");
+            Console.WriteLine($"Dexterity : {this.BaseAttributes.Dexterity}");
+            Console.WriteLine($"Intelligence : {this.BaseAttributes.Intelligence}");
+            Console.WriteLine($"Vitality : {this.BaseAttributes.Vitality}");
             Console.WriteLine($"Health : {this.SecondaryAttributes.Health}");
             Console.WriteLine($"Armor rating : {this.SecondaryAttributes.ArmorRating}");
             Console.WriteLine($"Elemental Resistance : {this.SecondaryAttributes.ElementalResistance}");

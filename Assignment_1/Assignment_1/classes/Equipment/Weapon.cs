@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment_1.classes.Equipment
 {
-    class Weapon : Items
+    public class Weapon : Items
     {
         //BaseDamage is on a scale from 0-100 and Attack speed is on a scale from 0-5
         public int BaseDamage;

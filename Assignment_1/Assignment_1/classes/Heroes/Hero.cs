@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 using Assignment_1.classes.Attributes;
+using Assignment_1.classes.Equipment;
 
 
 namespace Assignment_1.classes.Heroes
@@ -15,7 +17,7 @@ namespace Assignment_1.classes.Heroes
 
         public int Level { get; set; }
         //Base stats should represent the hero's base stats, which means only the stats it gains from leveling up
-        public Primary BasePrimaryAttributes { get; set; }
+        public Primary BaseAttributes { get; set; }
         //Total stats should be base stats + gear
         public Primary TotalPrimaryAttributes { get; set; }
 
@@ -25,23 +27,17 @@ namespace Assignment_1.classes.Heroes
 
         public string Role { get; set; }
 
+        Dictionary<Items.Slots, Armor.ArmorType> Equipment = new Dictionary<Items.Slots, Armor.ArmorType>();
+
         public Hero(string name, int level)
         {
             this.Name = name;
             this.Level = level;
         }
 
-        public virtual void LevelUp()
-        {
+        public abstract void LevelUp();
 
-            Console.WriteLine($"Congratulations! {this.Name}'s strength rose by {0}, dexterity rose by {0}, " +
-                $"intelligence rose by {0} and vitality rose by {0}");
-        }
-
-        public virtual void Display()
-        {
-            Console.WriteLine($"Name : {this.Name}, Level : {this.Level}, Strength :{this.BasePrimaryAttributes.Strength}");
-        }
+        public abstract void Display();
 
 
     }
