@@ -11,7 +11,7 @@ namespace Assignment_1.classes.Heroes
 {
     public class Warrior : Hero
     {
-        Dictionary<int, Armor> Equipment = new Dictionary<int, Armor>();
+        Dictionary<int, Items> Equipment = new Dictionary<int, Items>();
         public Warrior(string name, int level) : base(name,level)
         {
             this.Name = name;
@@ -27,6 +27,7 @@ namespace Assignment_1.classes.Heroes
                 Vitality = 10 * level
             };
             this.BaseAttributes = Primary;
+            this.TotalPrimaryAttributes = this.BaseAttributes;
             this.Damage = (this.BaseAttributes.Strength / 100);
 
 
@@ -41,30 +42,32 @@ namespace Assignment_1.classes.Heroes
             }
 
         /// <summary>
-        /// Takes in all the base values and updates them accordingly each time the hero levels up.
+        /// Levels up the hero and updates the stats
         /// </summary>
-        public override void LevelUp()
+        public void LevelUp()
         {
-            Console.WriteLine($"Your {this.Name} strength rose by {3}, dexterity rose by {2}, " +
-                $"intelligence rose by {1} and vitality rose by {10}");
-            this.BaseAttributes.Strength += 3;
-            this.BaseAttributes.Dexterity += 2;
-            this.BaseAttributes.Intelligence += 1;
-            this.BaseAttributes.Vitality += 10;
-
-            //Secondary attributes
-            this.SecondaryAttributes.Health = this.BaseAttributes.Vitality * 10;
-            this.SecondaryAttributes.ArmorRating = this.BaseAttributes.Strength + this.BaseAttributes.Dexterity;
-            this.SecondaryAttributes.ElementalResistance = this.BaseAttributes.Intelligence;
+            Primary LevelUpStats = new Primary
+            {
+                Strength = 3,
+                Dexterity = 2,
+                Intelligence = 1,
+                Vitality = 10
+            };
+            this.BaseAttributes = this.LevelUp(LevelUpStats);
+            this.SecondaryAttributes = this.UpdateSecondaryStats();
             this.Level++;
         }
 
+        /// <summary>
+        /// A method for the hero to equip it's gear, this only applies to armor
+        /// First it is implemented a check to make sure that the type of armor is acceptable
+        /// Secondly, it is check that the armor meeets the level requirement
+        /// Thirdly, the armor is put in it's appropriate slot
+        /// Last, but not least, the primary attribute of the armor are added to the total primary attribute of the hero
+        /// </summary>
+        /// <param name="armor"></param>
         public void EquipGear(Armor armor)
         {
-            /*
-             * Check if the armor is going to be placed in the correct slot
-             */
-
             try
             {
                 if(armor.armorType != Armor.ArmorType.Mail && armor.armorType != Armor.ArmorType.Plate)
@@ -75,31 +78,60 @@ namespace Assignment_1.classes.Heroes
                     throw new InvalidArmorException("This armor is to high leveled for you to use");
                 }
 
+                //Here we remove the key before we add a new one to prevent an ArgumentException being thrown.
+                    switch (armor.Slot)
+                    {
+                        case (Items.Slots.Head):
+                            this.Equipment.Remove(1);
+                            this.Equipment.Add(1, armor);
+                            break;
 
+                        case (Items.Slots.Body):
+                            this.Equipment.Remove(2);
+                            this.Equipment.Add(2, armor);
+                            break;
 
+                        case (Items.Slots.Legs):
+                            this.Equipment.Remove(3);
+                            this.Equipment.Add(3, armor);
+                            break;
+                    }
 
-
+                this.TotalPrimaryAttributes = this.UpdateTotalPrimaryStats(armor);
+                this.SecondaryAttributes = this.UpdateSecondaryStats();
             } catch(InvalidArmorException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
 
-        //Currently this is only used for testing the character stats and siplaying it in the console
-        public override void Display()
+        /// <summary>
+        /// First it is check what type of weapon it is and verified whether or not it can be equipped
+        /// Second, it is checked whether or not the required level for the weapon is too high
+        /// Thirdly, the weapon is eqipped
+        /// Last, but not least, the stats are added
+        /// </summary>
+        /// <param name="weapon"></param>
+        public void EquipGear(Weapon weapon)
         {
-            Console.WriteLine($"Name : {this.Name}");
-            Console.WriteLine($"Level : {this.Level}");
-            Console.WriteLine($"Strenght : {this.BaseAttributes.Strength}");
-            Console.WriteLine($"Dexterity : {this.BaseAttributes.Dexterity}");
-            Console.WriteLine($"Intelligence : {this.BaseAttributes.Intelligence}");
-            Console.WriteLine($"Vitality : {this.BaseAttributes.Vitality}");
-            Console.WriteLine($"Health : {this.SecondaryAttributes.Health}");
-            Console.WriteLine($"Armor rating : {this.SecondaryAttributes.ArmorRating}");
-            Console.WriteLine($"Elemental Resistance : {this.SecondaryAttributes.ElementalResistance}");
-            //DPS is wrong as for now
-            Console.WriteLine($"DPS : {this.Damage}");
+            try
+            {
+                Console.WriteLine($"Your level {this.Level}, weapon level {weapon.RequiredLevel}");
+                if (weapon.type != Weapon.WeaponType.Axe && weapon.type != Weapon.WeaponType.Hammer && weapon.type != Weapon.WeaponType.Sword)
+                {
+                    throw new InvalidWeaponException($"As a {this.Role} you cannot use this type of weapon");
+                } else if(weapon.RequiredLevel > this.Level)
+                {
+                    throw new InvalidWeaponException($"This weapon requires you to be level {weapon.RequiredLevel}");
+                }
+
+                this.Equipment.Remove(4);
+                this.Equipment.Add(4, weapon);
+            } catch(InvalidWeaponException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
+       
     }
 }

@@ -9,18 +9,18 @@ namespace Assignment_1
         static void Main(string[] args)
         {
 
-            Warrior war = new Warrior("Martin", 3);
-            war.Display();
-            war.LevelUp();
-            war.Display();
+            Warrior war = new Warrior("Martin", 1);
 
             Weapon Axe = new Weapon(9, Weapon.WeaponType.Axe);
-            Armor Chest = new Armor(11, Armor.ArmorType.Plate, Items.Slots.Body);
-            Armor test = new Armor(1, Armor.ArmorType.Cloth, Items.Slots.Body);
+            Armor PlateHead = new Armor(1, Armor.ArmorType.Plate, Items.Slots.Head);
 
-            war.EquipGear(test);
+            //war.EquipGear(PlateHead);
 
-            Console.WriteLine(Axe.DPS);
+            war.Display();
+            war.EquipGear(PlateHead);
+            war.Display();
+
+            Console.WriteLine();
         }
     }
 }

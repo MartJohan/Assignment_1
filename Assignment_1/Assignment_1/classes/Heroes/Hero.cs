@@ -35,9 +35,73 @@ namespace Assignment_1.classes.Heroes
             this.Level = level;
         }
 
-        public abstract void LevelUp();
+        public Primary LevelUp(Primary primary)
+        {
+            Console.WriteLine($"Your hero leveled up, your strength rose by {primary.Strength}," +
+                $" dexterity rose by {primary.Dexterity}, intelligence rose by {primary.Intelligence}" +
+                $" and vitality rose by {primary.Vitality}, you rock!");
 
-        public abstract void Display();
+            Primary NewPrimaryStats = new Primary
+            {
+                Strength = this.BaseAttributes.Strength + primary.Strength,
+                Dexterity = this.BaseAttributes.Dexterity + primary.Dexterity,
+                Intelligence = this.BaseAttributes.Intelligence + primary.Intelligence,
+                Vitality = this.BaseAttributes.Vitality + primary.Vitality
+            };
+
+            return NewPrimaryStats;
+        }
+
+        // public abstract void EquipGear(Type type);
+
+        //Currently this is only used for testing the character stats and siplaying it in the console
+        public void Display()
+        {
+            Console.WriteLine($"Name : {this.Name}");
+            Console.WriteLine($"Level : {this.Level}");
+            Console.WriteLine($"Strenght : {this.TotalPrimaryAttributes.Strength}");
+            Console.WriteLine($"Dexterity : {this.TotalPrimaryAttributes.Dexterity}");
+            Console.WriteLine($"Intelligence : {this.TotalPrimaryAttributes.Intelligence}");
+            Console.WriteLine($"Vitality : {this.TotalPrimaryAttributes.Vitality}");
+            Console.WriteLine($"Health : {this.SecondaryAttributes.Health}");
+            Console.WriteLine($"Armor rating : {this.SecondaryAttributes.ArmorRating}");
+            Console.WriteLine($"Elemental Resistance : {this.SecondaryAttributes.ElementalResistance}");
+            //DPS is wrong as for now
+            Console.WriteLine($"DPS : {this.Damage}");
+            Console.WriteLine("----------------------------------");
+        }
+
+        /// <summary>
+        /// Updates the total primary attributes for a hero after equping a new armor piece
+        /// </summary>
+        /// <param name="TotalStats"></param>
+        public Primary UpdateTotalPrimaryStats(Armor armor)
+        {
+            Primary NewTotalStats = new Primary
+            {
+                Strength = this.TotalPrimaryAttributes.Strength + armor.BaseAttributes.Strength,
+                Dexterity = this.TotalPrimaryAttributes.Dexterity + armor.BaseAttributes.Dexterity,
+                Intelligence = this.TotalPrimaryAttributes.Intelligence + armor.BaseAttributes.Intelligence,
+                Vitality = this.TotalPrimaryAttributes.Vitality + armor.BaseAttributes.Vitality
+            };
+            return NewTotalStats;
+        }
+
+        /// <summary>
+        /// Updates the secondary stats of the hero
+        /// </summary>
+        /// <returns></returns>
+        public Secondary UpdateSecondaryStats()
+        {
+            Secondary NewSecondaryStats = new Secondary
+            {
+                Health = this.TotalPrimaryAttributes.Vitality * 10,
+                ArmorRating =this.TotalPrimaryAttributes.Strength + this.TotalPrimaryAttributes.Dexterity,
+                ElementalResistance = this.TotalPrimaryAttributes.Intelligence
+            };
+
+            return NewSecondaryStats;
+        }
 
 
     }

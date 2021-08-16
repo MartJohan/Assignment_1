@@ -13,6 +13,7 @@ namespace Assignment_1.classes.Equipment
         public double AttackSpeed;
         //DPS, Damage Per Second, represents the base damage of a weapon * it's attack speed
         public double DPS;
+        public WeaponType type;
 
         public enum WeaponType
         {
@@ -27,6 +28,7 @@ namespace Assignment_1.classes.Equipment
         public Weapon(int requiredLevel, WeaponType type)
         {
             this.Name = type.ToString();
+            this.type = type;
             this.RequiredLevel = requiredLevel;
             this.Slot = Slots.Weapon;
             
