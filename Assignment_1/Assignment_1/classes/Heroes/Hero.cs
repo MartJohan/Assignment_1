@@ -28,7 +28,7 @@ namespace Assignment_1.classes.Heroes
 
         public Secondary SecondaryAttributes { get; set; }
 
-        public int Damage { get; set; }
+        public double Damage { get; set; }
 
         public string Role { get; set; }
 
@@ -72,7 +72,7 @@ namespace Assignment_1.classes.Heroes
         /// Updates the total primary attributes for a hero after equping a new armor piece
         /// </summary>
         /// <param name="TotalStats"></param>
-        public Primary UpdateTotalPrimaryStats(Armor armor)
+        public Primary UpdateTotalPrimaryStats()
         {
             Primary TotalEquippedStats = new Primary();
             foreach(KeyValuePair<int, Primary> equippedStats in EquippedStats)
@@ -106,6 +106,35 @@ namespace Assignment_1.classes.Heroes
             };
 
             return NewSecondaryStats;
+        }
+
+        public double CalculateDPS()
+        {
+            Items value;
+            if(!Equipment.TryGetValue(4, out value))
+            {
+                return 0;
+            }
+            Weapon weapon = (Weapon)Equipment[4];
+            switch (Role)
+            {
+                case ("Warrior"):
+                    Damage = weapon.DPS * (1 + TotalPrimaryAttributes.Strength / 100);
+                    break;
+
+                case ("Rogue"):
+                    Damage = weapon.DPS * (1 + TotalPrimaryAttributes.Dexterity / 100);
+                    break;
+
+                case ("Ranger"):
+                    Damage = weapon.DPS * (1 + TotalPrimaryAttributes.Dexterity / 100);
+                    break;
+
+                case ("Mage"):
+                    Damage = weapon.DPS * (1 + TotalPrimaryAttributes.Intelligence / 100);
+                    break;
+            }
+            return Damage;
         }
     }
 }

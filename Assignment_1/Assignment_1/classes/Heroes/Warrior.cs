@@ -27,10 +27,7 @@ namespace Assignment_1.classes.Heroes
                 Vitality = 10 * level
             };
             BaseAttributes = Primary;
-            TotalPrimaryAttributes = this.BaseAttributes;
-            Damage = (BaseAttributes.Strength / 100);
-            Console.WriteLine(Damage);
-
+            TotalPrimaryAttributes = BaseAttributes;
 
             //Same thing with the secondary values
             var Secondary = new Secondary
@@ -107,8 +104,9 @@ namespace Assignment_1.classes.Heroes
                             break;
                     }
 
-                TotalPrimaryAttributes = UpdateTotalPrimaryStats(armor);
+                TotalPrimaryAttributes = UpdateTotalPrimaryStats();
                 SecondaryAttributes = UpdateSecondaryStats();
+                Damage = CalculateDPS();
             } catch(InvalidArmorException ex)
             {
                 Console.WriteLine(ex.Message);
@@ -126,7 +124,6 @@ namespace Assignment_1.classes.Heroes
         {
             try
             {
-                Console.WriteLine($"Your level {Level}, weapon level {weapon.RequiredLevel}");
                 if (weapon.type != Weapon.WeaponType.Axe && weapon.type != Weapon.WeaponType.Hammer && weapon.type != Weapon.WeaponType.Sword)
                 {
                     throw new InvalidWeaponException($"As a {Role} you cannot use this type of weapon");
@@ -137,6 +134,7 @@ namespace Assignment_1.classes.Heroes
 
                 Equipment.Remove(4);
                 Equipment.Add(4, weapon);
+                Damage = CalculateDPS();
             } catch(InvalidWeaponException ex)
             {
                 Console.WriteLine(ex.Message);

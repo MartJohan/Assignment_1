@@ -27,26 +27,26 @@ namespace Assignment_1.classes.Equipment
         }
         public Weapon(int requiredLevel, WeaponType type)
         {
-            this.Name = type.ToString();
+            Name = type.ToString();
             this.type = type;
-            this.RequiredLevel = requiredLevel;
-            this.Slot = Slots.Weapon;
+            RequiredLevel = requiredLevel;
+            Slot = Slots.Weapon;
             
             if(type == WeaponType.Wand || type == WeaponType.Dagger || type == WeaponType.Bow)
             {
-                this.BaseDamage = 40;
-                this.AttackSpeed = 4;
+                BaseDamage = 40 * requiredLevel;
+                AttackSpeed = 4;
             } else if(type == WeaponType.Sword || type == WeaponType.Axe)
             {
-                this.BaseDamage = 60;
-                this.AttackSpeed = 2.5;
+                BaseDamage = 60 * requiredLevel;
+                AttackSpeed = 2.5;
             } else
             {
-                this.BaseDamage = 85;
-                this.AttackSpeed = 1.89;
+                BaseDamage = 85 * requiredLevel;
+                AttackSpeed = 1.89;
             }
 
-            this.DPS = (this.BaseDamage * this.AttackSpeed);
+            DPS = (BaseDamage * AttackSpeed);
 
         }
     }

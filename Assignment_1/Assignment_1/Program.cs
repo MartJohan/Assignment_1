@@ -11,7 +11,7 @@ namespace Assignment_1
 
             Warrior war = new Warrior("Martin", 5);
 
-            Weapon Axe = new Weapon(9, Weapon.WeaponType.Axe);
+            Weapon Axe = new Weapon(3, Weapon.WeaponType.Axe);
             Armor PlateHead = new Armor(5, Armor.ArmorType.Plate, Items.Slots.Head);
             Armor PlateBody = new Armor(5, Armor.ArmorType.Plate, Items.Slots.Body);
             Armor MailLegs = new Armor(5, Armor.ArmorType.Mail, Items.Slots.Legs);
@@ -21,10 +21,9 @@ namespace Assignment_1
             war.EquipGear(PlateHead);
             war.EquipGear(PlateBody);
             war.EquipGear(MailLegs);
+            war.EquipGear(Axe);
 
             war.Display();
-
-            Console.WriteLine();
         }
     }
 }
