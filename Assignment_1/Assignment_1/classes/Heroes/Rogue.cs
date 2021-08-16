@@ -9,25 +9,23 @@ using Assignment_1.classes.Exceptions;
 
 namespace Assignment_1.classes.Heroes
 {
-    class Rogue : Hero
+    public class Rogue : Hero
     {
-        public Rogue(string name, int level) : base(name, level)
+        public Rogue(string name) : base(name)
         {
             this.Name = name;
-            this.Level = level;
+            this.Level = 1;
             this.Role = "Rogue";
 
             var Primary = new Primary
             {
-                Strength = 2 * level,
-                Dexterity = 6 * level,
-                Intelligence = 1 * level,
-                Vitality = 8 * level
+                Strength = 2 * Level,
+                Dexterity = 6 * Level,
+                Intelligence = 1 * Level,
+                Vitality = 8 * Level
             };
-            this.BaseAttributes = Primary;
-
-            this.Damage += (this.BaseAttributes.Dexterity / 100);
-
+            BaseAttributes = Primary;
+            TotalPrimaryAttributes = BaseAttributes;
 
             var Secondary = new Secondary
             {

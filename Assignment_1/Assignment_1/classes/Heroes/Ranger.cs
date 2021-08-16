@@ -9,25 +9,23 @@ using Assignment_1.classes.Exceptions;
 
 namespace Assignment_1.classes.Heroes
 {
-    class Ranger : Hero
+    public class Ranger : Hero
     {
-        public Ranger(string name, int level) : base(name,level)
+        public Ranger(string name) : base(name)
         {
             this.Name = name;
-            this.Level = level;
+            this.Level = 1;
             this.Role = "Ranger";
 
             var Primary = new Primary
             {
-                Strength = 1,
-                Dexterity = 7,
-                Intelligence = 1,
-                Vitality = 8 
+                Strength = 1 * Level,
+                Dexterity = 7 * Level,
+                Intelligence = 1 * Level,
+                Vitality = 8 * Level
             };
-            this.BaseAttributes = Primary;
-
-            this.Damage = (this.BaseAttributes.Dexterity / 100);
-
+            BaseAttributes = Primary;
+            TotalPrimaryAttributes = BaseAttributes;
 
             var Secondary = new Secondary
             {
@@ -35,7 +33,7 @@ namespace Assignment_1.classes.Heroes
                 ArmorRating = this.BaseAttributes.Strength + this.BaseAttributes.Dexterity,
                 ElementalResistance = this.BaseAttributes.Intelligence
             };
-            this.SecondaryAttributes = Secondary;
+            SecondaryAttributes = Secondary;
         }
 
         /// <summary>

@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Assignment_1\Assignment_1.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Items\" />
+  </ItemGroup>
+
 </Project>

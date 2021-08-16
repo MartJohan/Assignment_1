@@ -12,19 +12,19 @@ namespace Assignment_1.classes.Heroes
     public class Warrior : Hero
     {
         
-        public Warrior(string name, int level) : base(name,level)
+        public Warrior(string name) : base(name)
         {
             Name = name;
-            Level = level;
+            Level = 1;
             Role = "Warrior";
 
             //Create a new object of type Primary and initialize it's values
             var Primary = new Primary
             {
-                Strength = 5 * level,
-                Dexterity = 2 * level,
-                Intelligence = 1 * level,
-                Vitality = 10 * level
+                Strength = 5 * Level,
+                Dexterity = 2 * Level,
+                Intelligence = 1 * Level,
+                Vitality = 10 * Level
             };
             BaseAttributes = Primary;
             TotalPrimaryAttributes = BaseAttributes;

@@ -9,33 +9,31 @@ using Assignment_1.classes.Exceptions;
 
 namespace Assignment_1.classes.Heroes
 {
-    class Mage : Hero
+    public class Mage : Hero
     {
-        public Mage(string name, int level) : base(name, level)
+        public Mage(string name) : base(name)
         {
             this.Name = name;
-            this.Level = level;
+            this.Level = 1;
             this.Role = "Mage";
 
             var Primary = new Primary
             {
-                Strength = 5 * level,
-                Dexterity = 1 * level,
-                Intelligence = 8 * level,
-                Vitality = 5 * level
+                Strength = 1 * Level,
+                Dexterity = 1 * Level,
+                Intelligence = 8 * Level,
+                Vitality = 5 * Level
             };
-            this.BaseAttributes = Primary;
-
-            this.Damage = (this.BaseAttributes.Intelligence / 100);
-
+            BaseAttributes = Primary;
+            TotalPrimaryAttributes = BaseAttributes;
 
             var Secondary = new Secondary
             {
-                Health = this.BaseAttributes.Vitality * 10,
-                ArmorRating = (this.BaseAttributes.Strength + this.BaseAttributes.Dexterity),
-                ElementalResistance = this.BaseAttributes.Intelligence
+                Health = BaseAttributes.Vitality * 10,
+                ArmorRating = BaseAttributes.Strength + BaseAttributes.Dexterity,
+                ElementalResistance = BaseAttributes.Intelligence
             };
-            this.SecondaryAttributes = Secondary;
+            SecondaryAttributes = Secondary;
         }
 
         /// <summary>

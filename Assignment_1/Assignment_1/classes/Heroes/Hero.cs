@@ -32,10 +32,9 @@ namespace Assignment_1.classes.Heroes
 
         public string Role { get; set; }
 
-        public Hero(string name, int level)
+        public Hero(string name)
         {
             Name = name;
-            Level = level;
         }
 
         public Primary LevelUp(Primary primary)
