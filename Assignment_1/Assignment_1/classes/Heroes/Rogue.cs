@@ -11,6 +11,11 @@ namespace Assignment_1.classes.Heroes
 {
     public class Rogue : Hero
     {
+        /// <summary>
+        /// The constructor, initialize the hero with a name, level and role.
+        /// The hero is assigned primary and secondary stats based on it's role
+        /// </summary>
+        /// <param name="name"></param>s
         public Rogue(string name) : base(name)
         {
             this.Name = name;
@@ -60,12 +65,12 @@ namespace Assignment_1.classes.Heroes
         /// Secondly, it is check that the armor meeets the level requirement
         /// Thirdly, the armor is put in it's appropriate slot
         /// Last, but not least, the primary attribute of the armor are added to the total primary attribute of the hero
+        ///The parameter armor is the armor piece we are trying to equip
+        ////// The function returns a string which indicates that the armor could have been equipped
         /// </summary>
         /// <param name="armor"></param>
-        public void EquipGear(Armor armor)
+        public string EquipGear(Armor armor)
         {
-            try
-            {
                 if (armor.armorType != Armor.ArmorType.Leather && armor.armorType != Armor.ArmorType.Mail)
                 {
                     throw new InvalidArmorException($"As a {Role} you cannot use {armor.armorType}");
@@ -106,11 +111,7 @@ namespace Assignment_1.classes.Heroes
                 TotalPrimaryAttributes = UpdateTotalPrimaryStats();
                 SecondaryAttributes = UpdateSecondaryStats();
                 Damage = CalculateDPS();
-            }
-            catch (InvalidArmorException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            return "New armor equipped";
         }
 
         /// <summary>
@@ -118,29 +119,29 @@ namespace Assignment_1.classes.Heroes
         /// Second, it is checked whether or not the required level for the weapon is too high
         /// Thirdly, the weapon is eqipped
         /// Last, but not least, the stats are added
+        /// The parameter weapon is the weapon we are trying to equip
         /// </summary>
         /// <param name="weapon"></param>
         public void EquipGear(Weapon weapon)
         {
-            try
-            {
-                if (weapon.type != Weapon.WeaponType.Dagger && weapon.type != Weapon.WeaponType.Sword)
-                {
-                    throw new InvalidWeaponException($"As a {Role} you cannot use this type of weapon");
-                }
-                else if (weapon.RequiredLevel > Level)
-                {
-                    throw new InvalidWeaponException($"This weapon requires you to be level {weapon.RequiredLevel}");
-                }
-
+            CheckGear(weapon);
                 Equipment.Remove(4);
                 Equipment.Add(4, weapon);
                 Damage = CalculateDPS();
-            }
-            catch (InvalidWeaponException ex)
+        }
+
+        public bool CheckGear(Weapon weapon)
+        {
+            if (weapon.type != Weapon.WeaponType.Dagger && weapon.type != Weapon.WeaponType.Sword)
             {
-                Console.WriteLine(ex.Message);
+                throw new InvalidWeaponException($"As a {Role} you cannot use this type of weapon");
             }
+            else if (weapon.RequiredLevel > Level)
+            {
+                throw new InvalidWeaponException($"This weapon requires you to be level {weapon.RequiredLevel}");
+            }
+
+            return true;
         }
     }
 }

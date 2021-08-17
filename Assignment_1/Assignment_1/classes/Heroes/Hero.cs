@@ -37,6 +37,11 @@ namespace Assignment_1.classes.Heroes
             Name = name;
         }
 
+        /// <summary>
+        /// This method takes in an object with some primary stats and updates the characters primary stats
+        /// </summary>
+        /// <param name="primary"></param>
+        /// <returns></returns>
         public Primary LevelUp(Primary primary)
         {
             Primary NewPrimaryStats = new Primary
@@ -50,7 +55,9 @@ namespace Assignment_1.classes.Heroes
             return NewPrimaryStats;
         }
 
-        //Currently this is only used for testing the character stats and siplaying it in the console
+        /// <summary>
+        /// Displays the name, level, total primary stats, total secondary stats and damage of the hero
+        /// </summary>
         public void Display()
         {
             Console.WriteLine($"Name : {Name}");
@@ -62,7 +69,6 @@ namespace Assignment_1.classes.Heroes
             Console.WriteLine($"Health : {SecondaryAttributes.Health}");
             Console.WriteLine($"Armor rating : {SecondaryAttributes.ArmorRating}");
             Console.WriteLine($"Elemental Resistance : {SecondaryAttributes.ElementalResistance}");
-            //DPS is wrong as for now
             Console.WriteLine($"DPS : {Damage}");
             Console.WriteLine("----------------------------------");
         }
@@ -107,6 +113,10 @@ namespace Assignment_1.classes.Heroes
             return NewSecondaryStats;
         }
 
+        /// <summary>
+        /// Calculates the dps for a charatcer with the appropriate primary stats in mind
+        /// </summary>
+        /// <returns></returns>
         public double CalculateDPS()
         {
             Items value;

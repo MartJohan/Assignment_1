@@ -7,7 +7,6 @@ namespace Assignment_1Tests.CharacterTests
 {
     public class CharacterTests
     {
-        //Name MethodYouAreTesting_ConditionsItsBeingTestedUnder_ExpectedBehaviour()
         [Fact]
         public void CreateCharacter_LevelShouldBeOne()
         {
@@ -34,9 +33,6 @@ namespace Assignment_1Tests.CharacterTests
             //Assert
             Assert.Equal(expectedLevel, actual.Level);
         }
-
-        //Theory
-        //Test, should the user be able to choose how many levels the character can level up?
 
         [Fact]
         public void CreateWarrior_CorrectStartingAttributes()

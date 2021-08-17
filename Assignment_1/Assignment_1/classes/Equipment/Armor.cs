@@ -57,7 +57,7 @@ namespace Assignment_1.classes.Equipment
                     Primary.Vitality = 2;
                     break;
             }
-            this.BaseAttributes = Primary;
+            BaseAttributes = Primary;
         }
     }
 }
