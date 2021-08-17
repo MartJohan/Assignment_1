@@ -30,31 +30,31 @@ namespace Assignment_1.classes.Equipment
             switch (armor)
             {
                 case (ArmorType.Cloth):
-                    Primary.Strength = 2;
-                    Primary.Dexterity = 2;
-                    Primary.Intelligence = 8;
-                    Primary.Vitality = 3;
+                    Primary.Strength = 0;
+                    Primary.Dexterity = 0;
+                    Primary.Intelligence = 2;
+                    Primary.Vitality = 1;
                     break;
 
                 case (ArmorType.Leather):
-                    Primary.Strength = 2;
-                    Primary.Dexterity = 7;
-                    Primary.Intelligence = 2;
-                    Primary.Vitality = 4;
+                    Primary.Strength = 0;
+                    Primary.Dexterity = 2;
+                    Primary.Intelligence = 0;
+                    Primary.Vitality = 1;
                     break;
 
                 case (ArmorType.Mail):
-                    Primary.Strength = 4;
-                    Primary.Dexterity = 5;
-                    Primary.Intelligence = 1;
-                    Primary.Vitality = 5;
+                    Primary.Strength = 1;
+                    Primary.Dexterity = 0;
+                    Primary.Intelligence = 0;
+                    Primary.Vitality = 2;
                     break;
 
                 case (ArmorType.Plate):
-                    Primary.Strength = 6;
-                    Primary.Dexterity = 2;
-                    Primary.Intelligence = 1;
-                    Primary.Vitality = 6;
+                    Primary.Strength = 1;
+                    Primary.Dexterity = 0;
+                    Primary.Intelligence = 0;
+                    Primary.Vitality = 2;
                     break;
             }
             this.BaseAttributes = Primary;

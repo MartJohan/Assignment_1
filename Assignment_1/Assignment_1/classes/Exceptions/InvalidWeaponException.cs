@@ -8,11 +8,10 @@ using Assignment_1.classes.Heroes;
 
 namespace Assignment_1.classes.Exceptions
 {
-    class InvalidWeaponException : Exception
+    public class InvalidWeaponException : Exception
     {
 
-        public InvalidWeaponException()
-        { }
+        public InvalidWeaponException() { }
 
         public InvalidWeaponException(string message) : base(message)
         { }

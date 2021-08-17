@@ -8,7 +8,7 @@ using Assignment_1.classes.Heroes;
 
 namespace Assignment_1.classes.Exceptions
 {
-    class InvalidArmorException : Exception
+    public class InvalidArmorException : Exception
     {
 
         public InvalidArmorException() { }

@@ -34,16 +34,16 @@ namespace Assignment_1.classes.Equipment
             
             if(type == WeaponType.Wand || type == WeaponType.Dagger || type == WeaponType.Bow)
             {
-                BaseDamage = 40 * requiredLevel;
-                AttackSpeed = 4;
+                BaseDamage = 4 * requiredLevel;
+                AttackSpeed = 1.3;
             } else if(type == WeaponType.Sword || type == WeaponType.Axe)
             {
-                BaseDamage = 60 * requiredLevel;
-                AttackSpeed = 2.5;
+                BaseDamage = 7 * requiredLevel;
+                AttackSpeed = 1.1;
             } else
             {
-                BaseDamage = 85 * requiredLevel;
-                AttackSpeed = 1.89;
+                BaseDamage = 10 * requiredLevel;
+                AttackSpeed = 0.8;
             }
 
             DPS = (BaseDamage * AttackSpeed);
