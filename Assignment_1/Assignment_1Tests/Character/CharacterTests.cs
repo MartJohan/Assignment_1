@@ -50,7 +50,7 @@ namespace Assignment_1Tests.CharacterTests
             Warrior actual = new Warrior("Martin");
 
             //Assert
-            expected.Equals(actual);
+            expected.Equals(actual.BaseAttributes);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace Assignment_1Tests.CharacterTests
             Ranger actual = new Ranger("Martin");
 
             //Assert
-            expected.Equals(actual);
+            expected.Equals(actual.BaseAttributes);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace Assignment_1Tests.CharacterTests
             Rogue actual = new Rogue("Martin");
 
             //Assert
-            expected.Equals(actual);
+            expected.Equals(actual.BaseAttributes);
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace Assignment_1Tests.CharacterTests
             Mage actual = new Mage("Martin");
 
             //Assert
-            expected.Equals(actual);
+            expected.Equals(actual.BaseAttributes);
         }
 
         [Fact]
