@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment_1.classes.Attributes
 {
-    public class Primary
+    public struct Primary
     {
         public int Strength { get; set; }
 

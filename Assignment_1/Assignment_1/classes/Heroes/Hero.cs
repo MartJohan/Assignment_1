@@ -124,7 +124,7 @@ namespace Assignment_1.classes.Heroes
             {
                 return 0;
             }
-            Weapon weapon = (Weapon)Equipment[4];
+            Weapon weapon = (Weapon)value;
             switch (Role)
             {
                 case ("Warrior"):
@@ -144,6 +144,11 @@ namespace Assignment_1.classes.Heroes
                     break;
             }
             return Damage;
+        }
+
+        public Primary GetStats()
+        {
+            return TotalPrimaryAttributes;
         }
     }
 }

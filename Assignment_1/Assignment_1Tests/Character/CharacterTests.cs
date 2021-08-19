@@ -50,7 +50,8 @@ namespace Assignment_1Tests.CharacterTests
             Warrior actual = new Warrior("Martin");
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
+            
         }
 
         [Fact]
@@ -69,7 +70,7 @@ namespace Assignment_1Tests.CharacterTests
             Ranger actual = new Ranger("Martin");
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
@@ -88,7 +89,7 @@ namespace Assignment_1Tests.CharacterTests
             Rogue actual = new Rogue("Martin");
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
@@ -107,7 +108,7 @@ namespace Assignment_1Tests.CharacterTests
             Mage actual = new Mage("Martin");
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
@@ -127,7 +128,7 @@ namespace Assignment_1Tests.CharacterTests
             actual.LevelUp();
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
@@ -147,7 +148,7 @@ namespace Assignment_1Tests.CharacterTests
             actual.LevelUp();
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
@@ -167,7 +168,7 @@ namespace Assignment_1Tests.CharacterTests
             actual.LevelUp();
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
@@ -187,14 +188,12 @@ namespace Assignment_1Tests.CharacterTests
             actual.LevelUp();
 
             //Assert
-            expected.Equals(actual.BaseAttributes);
+            Assert.True(expected.Equals(actual.BaseAttributes));
         }
 
         [Fact]
         public void WarriorLevelUp_CorrectSecondaryStats()
         {
-            //Arrange
-            //: Health = 150, ArmorRating = 12, ElementalResistance = 2
             Secondary expected = new Secondary
             {
                 Health = 150,
@@ -207,7 +206,7 @@ namespace Assignment_1Tests.CharacterTests
             actual.LevelUp();
 
             //Assert
-            expected.Equals(actual);
+            Assert.True(expected.Equals(actual.SecondaryAttributes));
         }
     }
 }
