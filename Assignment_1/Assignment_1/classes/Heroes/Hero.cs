@@ -42,18 +42,7 @@ namespace Assignment_1.classes.Heroes
         /// </summary>
         /// <param name="primary"></param>
         /// <returns></returns>
-        public Primary LevelUp(Primary primary)
-        {
-            Primary NewPrimaryStats = new Primary
-            {
-                Strength = BaseAttributes.Strength + primary.Strength,
-                Dexterity = BaseAttributes.Dexterity + primary.Dexterity,
-                Intelligence = BaseAttributes.Intelligence + primary.Intelligence,
-                Vitality = BaseAttributes.Vitality + primary.Vitality
-            };
-
-            return NewPrimaryStats;
-        }
+        public abstract void LevelUp();
 
         /// <summary>
         /// Displays the name, level, total primary stats, total secondary stats and damage of the hero
@@ -146,9 +135,5 @@ namespace Assignment_1.classes.Heroes
             return Damage;
         }
 
-        public Primary GetStats()
-        {
-            return TotalPrimaryAttributes;
-        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment_1.classes.Attributes
 {
-    public struct Secondary
+    public class Secondary
     {
         public int Health { get; set; }
 
@@ -14,5 +14,17 @@ namespace Assignment_1.classes.Attributes
 
         public int ElementalResistance { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Secondary secondary &&
+                   Health == secondary.Health &&
+                   ArmorRating == secondary.ArmorRating &&
+                   ElementalResistance == secondary.ElementalResistance;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Health, ArmorRating, ElementalResistance);
+        }
     }
 }

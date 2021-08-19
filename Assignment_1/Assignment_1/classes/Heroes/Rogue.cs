@@ -45,16 +45,12 @@ namespace Assignment_1.classes.Heroes
         /// <summary>
         /// Levels up the hero and updates the stats
         /// </summary>
-        public void LevelUp()
+        public override void LevelUp()
         {
-            Primary LevelUpStats = new Primary
-            {
-                Strength = 1,
-                Dexterity = 4,
-                Intelligence = 1,
-                Vitality = 3
-            };
-            BaseAttributes = LevelUp(LevelUpStats);
+            BaseAttributes.Strength += 1;
+            BaseAttributes.Dexterity += 4;
+            BaseAttributes.Intelligence += 1;
+            BaseAttributes.Vitality += 3;
             SecondaryAttributes = UpdateSecondaryStats();
             Level++;
         }

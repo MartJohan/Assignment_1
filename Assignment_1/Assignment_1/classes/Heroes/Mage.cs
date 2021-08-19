@@ -44,7 +44,7 @@ namespace Assignment_1.classes.Heroes
         /// <summary>
         /// Levels up the hero and updates the stats
         /// </summary>
-        public void LevelUp()
+        public override void LevelUp()
         {
             Primary LevelUpStats = new Primary
             {
@@ -53,7 +53,11 @@ namespace Assignment_1.classes.Heroes
                 Intelligence = 5,
                 Vitality = 3
             };
-            this.BaseAttributes = this.LevelUp(LevelUpStats);
+            this.BaseAttributes.Strength += 1;
+            this.BaseAttributes.Dexterity += 1;
+            this.BaseAttributes.Intelligence += 5;
+            this.BaseAttributes.Vitality += 3;
+
             this.SecondaryAttributes = this.UpdateSecondaryStats();
             this.Level++;
         }

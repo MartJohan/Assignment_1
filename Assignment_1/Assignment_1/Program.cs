@@ -9,8 +9,7 @@ namespace Assignment_1
         static void Main(string[] args)
         {
             Warrior hero = new Warrior("Martin");
-            Weapon axe = new Weapon(2, Weapon.WeaponType.Axe);
-            hero.EquipGear(axe);
+            hero.Display();
         }
     }
 }
